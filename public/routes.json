@@ -1,9 +1,24 @@
 {
   "routes": [
     {
+      "route": "/login",
+      "serve": "/.auth/login/add"
+    },
+    {
+      "route": "/private/*",
+      "allowedRoles": ["viewer"]
+    },
+    {
       "route": "/*",
       "serve": "/index.html",
+      "allowedRoles": ["viewer"],
       "statusCode": 200
+    }
+  ],
+  "platformErrorOverrides": [
+    {
+      "errorType": "Unauthenticated",
+      "serve": "/login"
     }
   ]
 }
